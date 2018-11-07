@@ -611,7 +611,7 @@ void startup() {
 	// GSIs will have to override /sbin/adbd with /system/bin/adbd
 	if (access("/sbin/adbd", F_OK) == 0 && access("/system/bin/adbd", F_OK) == 0) {
 		umount2("/sbin/adbd", MNT_DETACH);
-		cp_afc("/system/bin/adbd", "/sbin/adbd");
+		mount("/system/bin/adbd", "/sbin/adbd", "none", MS_BIND, "");
 	}
 
 	// Create hardlink mirror of /sbin to /root
